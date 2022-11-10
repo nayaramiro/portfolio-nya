@@ -10,7 +10,7 @@
 body{
     height: 100vh;
     width: 100vw;
-    background: orange;
+    background: #1F1F1F;
     nav{
         top: 0px;
         left: 0px;
@@ -31,9 +31,11 @@ body{
                     }
                     img{
                         width: 50%;
+                        filter: contrast(0);
                     }
                 }
                 .burger{
+                    filter: contrast(0);
                     transition: all 2s ease-in-out;
                     &::after{
                         transition: all 2s ease-in-out;
@@ -47,8 +49,194 @@ body{
         width: 100vw;
         bottom: 0;
         left: 0;
-        background: blueviolet;
+        background: #1F1F1F;
+        background-repeat: no-repeat;
+        background-blend-mode: color;
         position: fixed;
         transition: all 2s ease-in-out;
+        .logo-background{
+            left: -20%;
+            transform: rotate(90deg);
+        }
+        ul{
+            li{
+                transition: all 1s ease-in-out;
+                &:hover{
+                    svg{
+                        transform: translateX(3px);
+                    }
+                }
+                svg{
+                    color: whitesmoke;
+                }
+            }
+            a{
+                color: whitesmoke;
+                &:hover{
+                    &::before{
+                        animation: GlitchBefore 1s infinite reverse;
+                    }
+                    &::after{
+                        animation : GlitchAfter 1s infinite reverse;
+                    }
+                }
+            }
+            li:nth-child(1){
+                a{
+                    &::before{
+                        content: 'HOME';
+                        position: absolute;
+                        color: #FF1A98;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50% , -50%);
+                        z-index: -1;
+                        }
+                    &::after{
+                        content: 'HOME';
+                        position: absolute;
+                        color: #0DD7FF;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50% , -50%);
+                        z-index: -2;
+                    }
+                }
+            }
+            li:nth-child(2){
+                a{
+                    &::before{
+                        content: 'DEVELOPMENT';
+                        position: absolute;
+                        color: #FF1A98;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50% , -50%);
+                        z-index: -1;
+                        }
+                    &::after{
+                        content: 'DEVELOPMENT';
+                        position: absolute;
+                        color: #0DD7FF;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50% , -50%);
+                        z-index: -2;
+                    }
+                }
+            }
+            li:nth-child(3){
+                a{
+                    &::before{
+                        content: 'DESIGNER';
+                        position: absolute;
+                        color: #FF1A98;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50% , -50%);
+                        z-index: -1;
+                        }
+                    &::after{
+                        content: 'DESIGNER';
+                        position: absolute;
+                        color: #0DD7FF;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50% , -50%);
+                        z-index: -2;
+                    }
+                }
+            }
+            li:nth-child(4){
+                a{
+                    &::before{
+                        content: 'CONTACT';
+                        position: absolute;
+                        color: #FF1A98;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50% , -50%);
+                        z-index: -1;
+                        }
+                    &::after{
+                        content: 'CONTACT';
+                        position: absolute;
+                        color: #0DD7FF;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50% , -50%);
+                        z-index: -2;
+                    }
+                }
+            }
+        }
+    }
+    header{
+        .text{
+            height: 300px;
+            width: 100%;
+            background-color: red;
+        }
     }
 }
+@keyframes GlitchBefore {
+    0% {
+        top: 49%; left: 48%;
+    }
+    12.5%{
+        top: 48%; left: 48%;
+    }
+    25%{
+        top: 52%; left: 51%;
+    }
+    37.5%{
+        top: 51%; left: 48%;
+    }
+    50%{
+        top: 47%; left: 52%;
+    }
+    62.5%{
+        top: 49%; left: 51%;
+    }
+    75%{
+        top: 51%; left: 52%;
+    }
+    87.5%{
+        top: 49%; left: 51%;
+    }
+    100%{
+        top: 48%; left: 49%;
+    }
+}
+
+
+@keyframes GlitchAfter {
+    0% {
+        top: 51%; left: 52%;
+    }
+    12.5%{
+        top: 48%; left: 51%;
+    }
+    25%{
+        top: 51%; left: 49%;
+    }
+    37.5%{
+        top: 48%; left: 49%;
+    }
+    50%{
+        top: 48%; left: 51%;
+    }
+    62.5%{
+        top: 51%; left: 52%;
+    }
+    75%{
+        top: 49%; left: 51%;
+    }
+    87.5%{
+        top: 51%; left: 49%;
+    }
+    100%{
+        top: 49%; left: 48%;
+    }
+}
+

@@ -1,10 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 import logo from '../img/logo-nya.png';
 
 import { useState } from 'react';
 import styled from 'styled-components';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
 
@@ -19,7 +20,7 @@ const Navbar = () => {
         &:before {
             position: absolute;
             height: 8px;
-            width: 80%;
+            width: 70%;
             background: black;
             right: 0;
             top: 15px;
@@ -40,8 +41,8 @@ const Navbar = () => {
     //right : 17px;
     //bottom : 30px
     //deg 90
-
-    console.log(burger);
+        
+console.log(burger);
     return (
         <>
             <nav>
@@ -58,8 +59,42 @@ const Navbar = () => {
                     </div>
                 </div>
             </nav>
-            <div className="wrapped"style={{ display : burger ? 'block' : 'none'}}>
-                
+            <div className=" justify-content-center align-items-center wrapped"style={{ display : burger ? 'flex' : 'none'}}>
+                <img style={{zIndex : -1}} className='position-absolute logo-background' src={logo} alt='logo'/>
+                <ul className='d-flex flex-column'>
+
+
+                    <li className='d-flex align-items-center'>
+                        <NavLink className="p-2 text-center text-decoration-none text-uppercase fs-3 position-relative p-lg-4" to="/">
+                            Home
+                            
+                        </NavLink>
+                        <FontAwesomeIcon className='fs-5' icon={faArrowRight}/>
+                    </li>
+
+                    <li className='d-flex align-items-center'>
+                        <NavLink className="p-2 text-center text-decoration-none text-uppercase fs-3 position-relative p-lg-4" to="/Development">
+                            Development
+                        </NavLink>
+                        <FontAwesomeIcon className='fs-5' icon={faArrowRight}/>
+                    </li>
+
+                    <li className='d-flex align-items-center'>
+                        <NavLink className="p-2 text-center text-decoration-none text-uppercase fs-3 position-relative p-lg-4" to="/Designer">
+                            Designer
+                        </NavLink>
+                        <FontAwesomeIcon className='fs-5' icon={faArrowRight}/>
+                    </li>
+
+
+                    <li className='d-flex align-items-center'>
+                        <NavLink className="p-2 text-center text-decoration-none text-uppercase fs-3 position-relative p-lg-4" to='/Contact'>
+                            Contact
+                        </NavLink>
+                        <FontAwesomeIcon className='fs-5' icon={faArrowRight}/>
+                    </li>
+                    
+                </ul>
             </div>
         </>
         
