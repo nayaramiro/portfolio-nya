@@ -10,6 +10,8 @@ import nay from '../img/nay.jpeg';
 import Arrow from '../component/Arrow';
 import Cursor from '../component/Cursor';
 import { Link } from 'react-router-dom';
+import Letter from '../component/Letter';
+import Footer from '../component/Footer';
 
 
 
@@ -57,13 +59,17 @@ const Home = () => {
                 var percent = Math.floor(total);
 
             //rotate arrow
-            const Rotation = percent >= 30 ? '180deg' : '0deg';
-            const ShowArrow = percent >= 30 ? true : false;
+            const Rotation = percent >= 15 ? '180deg' : '0deg';
+            const ShowArrow = percent >= 15 ? true : false;
             //change bck
-            const Background = percent >= 60 ? 'whitesmoke' : '#1F1F1F';
 
+            const Background = percent >= 15 && percent <= 70 ? 'whitesmoke' : '#1F1F1F';
+            
+            
+            
             setBackground(Background);
             setRotation(Rotation);
+            setShowArrow(ShowArrow)
         }
         window.addEventListener('scroll', handleScroll)
         
@@ -81,26 +87,7 @@ const Home = () => {
       const [linkHover, setLinkHover] = useState(false)
 
 
-      const handleLinkHover = () => {
-            document.querySelectorAll('a').forEach((el) => {
-                el.addEventListener('mouseenter', () => setLinkHover(true));
-                el.addEventListener('mouseleave', () => handleLinkHover(false))
-            })
-    }
-
-
-      useEffect(() => {
-        const handlemouse = (e) => {
-            setCursorX(e.clientX);
-            setCursorY(e.clientY);
-        } 
-        handleLinkHover()
-        window.addEventListener('mousemove', handlemouse)
-
-        return () => {
-            window.removeEventListener('mousemove', handlemouse)
-        }
-      }, [])
+    
 
     //
 
@@ -115,8 +102,6 @@ const Home = () => {
         className="home"
         style={{background : Background, transition: 'all 1s ease-in-out'}}
         >
-        <Cursor Class={'cursor'} styled={{top: cursorY + "px", left : cursorX + 'px' }}></Cursor>
-
 
         <img src={logo} alt='nay' className='position-absolute' style={{rotate: '-90deg', right: -200, top : 0}} />
             <div  className="container position-relative">
@@ -151,7 +136,42 @@ const Home = () => {
             </div>
 
 
-            
+
+
+
+            <div className="letters  py-lg-5 py-2 overflowX-hidden">
+                <div className="block d-flex flex-nowrap" style={{width : '100%'}}>
+                    {[...Array(8)].map((x, i) =>
+                        <Letter text={'development'}/>
+                    )}
+                </div>
+            </div>
+
+
+
+
+            <div className="development d-flex align-items-center">
+                <div className="container">
+                    <iframe src="https://www.youtube.com/embed/fCv_uQoYP_Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+
+
+            <div className="letters  py-lg-5 py-2 overflowX-hidden">
+                <div className="block d-flex flex-nowrap" style={{width : '100%'}}>
+                    {[...Array(8)].map((x, i) =>
+                        <Letter text={'designer'}/>
+                    )}
+                </div>
+            </div>
+
+
+            <div className="illustration py-lg-5 py-2 d-flex align-items-center justify-content-lg-start justify-content-center">
+                <iframe src="https://www.youtube.com/embed/fCv_uQoYP_Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <Footer />
 
 
         </motion.div>
