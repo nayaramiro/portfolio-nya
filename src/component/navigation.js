@@ -4,7 +4,7 @@ import Contact from '../pages/Contact';
 import Designer from '../pages/Designer';
 import Development from '../pages/Development';
 import Home from '../pages/Home';
-const navigation = () => {
+const Navigation = () => {
     return (
         <Routes>
             <Route path='/' exact element={<Home/>} />
@@ -15,4 +15,4 @@ const navigation = () => {
     );
 };
 
-export default navigation;
+export default Navigation;

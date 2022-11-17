@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect, useCallback, useRef} from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../img/logo-nya.png';
-
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -38,14 +38,44 @@ const Navbar = () => {
             
         }
     `;
-    //right : 17px;
-    //bottom : 30px
-    //deg 90
-        
-console.log(burger);
+    
+    const AnimationSettings = {
+        transition: { duration: .8 },
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -20 }
+      };
+      
+    
+
+      //show navbar
+        const [show , setShow] = useState(false);
+        const prevPosition = useRef(window.scrollY);
+        const [scrollDirection, setScrollDirection] = useState(false);
+      
+        const handleScroll = () => {
+          const currentPos = window.scrollY;
+          const prevPos = prevPosition.current;
+      
+          if (currentPos > prevPos) setScrollDirection(false);
+          if (currentPos < prevPos) setScrollDirection(true);
+      
+          prevPosition.current = currentPos;
+
+        };
+      
+        useEffect(() => {
+          window.addEventListener("scroll", handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+        }, []);
+      
+
+        console.log(burger);
+      
     return (
         <>
-            <nav>
+
+            <nav className={`${scrollDirection ? 'active' : 'hidden'}`}>
                 <div className="container">
                     <div className="row  d-flex justify-content-between">
                         <div className="col-2 d-flex align-items-center justify-content-center logo">
@@ -59,13 +89,16 @@ console.log(burger);
                     </div>
                 </div>
             </nav>
-            <div className=" justify-content-center align-items-center wrapped"style={{ display : burger ? 'flex' : 'none'}}>
+            <motion.div
+                {...AnimationSettings}
+                
+            className=" justify-content-center align-items-center wrapped"style={{ display : burger ? 'flex' : 'none'}}>
                 <img style={{zIndex : -1}} className='position-absolute logo-background' src={logo} alt='logo'/>
                 <ul className='d-flex flex-column'>
 
 
                     <li className='d-flex align-items-center'>
-                        <NavLink className="p-2 text-center text-decoration-none text-uppercase fs-3 position-relative p-lg-4" to="/">
+                        <NavLink onClick={(e) => setBurger(!burger)} className="p-2 text-center text-decoration-none text-uppercase fs-3 position-relative p-lg-4" to="/">
                             Home
                             
                         </NavLink>
@@ -73,14 +106,14 @@ console.log(burger);
                     </li>
 
                     <li className='d-flex align-items-center'>
-                        <NavLink className="p-2 text-center text-decoration-none text-uppercase fs-3 position-relative p-lg-4" to="/Development">
+                        <NavLink onClick={(e) => setBurger(!burger)} className="p-2 text-center text-decoration-none text-uppercase fs-3 position-relative p-lg-4" to="/Development">
                             Development
                         </NavLink>
                         <FontAwesomeIcon className='fs-5' icon={faArrowRight}/>
                     </li>
 
                     <li className='d-flex align-items-center'>
-                        <NavLink className="p-2 text-center text-decoration-none text-uppercase fs-3 position-relative p-lg-4" to="/Designer">
+                        <NavLink onClick={(e) => setBurger(!burger)}  className="p-2 text-center text-decoration-none text-uppercase fs-3 position-relative p-lg-4" to="/Designer">
                             Designer
                         </NavLink>
                         <FontAwesomeIcon className='fs-5' icon={faArrowRight}/>
@@ -88,14 +121,14 @@ console.log(burger);
 
 
                     <li className='d-flex align-items-center'>
-                        <NavLink className="p-2 text-center text-decoration-none text-uppercase fs-3 position-relative p-lg-4" to='/Contact'>
+                        <NavLink onClick={(e) => setBurger(!burger)}  className="p-2 text-center text-decoration-none text-uppercase fs-3 position-relative p-lg-4" to='/Contact'>
                             Contact
                         </NavLink>
                         <FontAwesomeIcon className='fs-5' icon={faArrowRight}/>
                     </li>
                     
                 </ul>
-            </div>
+            </motion.div>
         </>
         
     );
