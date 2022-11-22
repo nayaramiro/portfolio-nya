@@ -75,7 +75,7 @@ const Navbar = () => {
     return (
         <>
 
-            <nav className={`${scrollDirection ? 'active' : 'hidden'}`}>
+            <nav className={`${scrollDirection ? 'active' : 'hidden'}`} style={{transition : 'all .1s ease-in-out'}}>
                 <div className="container">
                     <div className="row  d-flex justify-content-between">
                         <div className="col-2 d-flex align-items-center justify-content-center logo">

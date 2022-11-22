@@ -15,8 +15,10 @@ import { Animation } from '../component/Animation';
 import DevVideo from "../videos/FireShot Capture 015 - Ocean's Trash - ocean-trash-six.vercel.app.mp4";
 import HoverVideoPlayer from 'react-hover-video-player';
 import Development from '../img/development.png';
-
-
+import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import gsap from 'gsap';
+import { TweenMax, TimelineMax, Power3, Power4 } from "gsap";
 
 
 
@@ -86,16 +88,63 @@ const Home = () => {
         Animation()
     }, [])
     
-    
+    gsap.registerPlugin(ScrollTrigger,ScrollSmoother)
+    let smoother = ScrollSmoother.create({
+        wrapper : "#smooth-wrapper",
+        content : '#smooth-content',
+        smooth : 1.5,
+        effects: true
+    })
+
+
+
+    let screen = useRef(null);
+    let body = useRef(null);
+    useEffect(() => {
+        var tl = new TimelineMax();
+        tl.to(screen, {
+        duration: 1.2,
+        height: "100%",
+        ease: Power3.easeInOut,
+        });
+        tl.to(screen, {
+        duration: 1,
+        top: "100%",
+        ease: Power3.easeInOut,
+        delay: 0.3,
+        });
+        tl.set(screen, { left: "-100%" });
+        TweenMax.to(body, .3, {css: {
+        opacity: "1",
+        pointerEvents: "auto",
+        ease: Power4.easeInOut
+        }}).delay(2);
+        return () => {
+        TweenMax.to(body, 1, {css: {
+            opacity: "0",
+            pointerEvents: 'none'
+        }});
+    }
+    });
 
     return (
-        <motion.div
-        {...AnimationSettings}
-        ref={divRef}
-        className="home"
-        style={{background : Background, transition: 'all 1s ease-in-out'}}
-        >
+        <>
+            <React.Fragment>
+                <div className="load-container">
+                    <div className="load-screen1" ref={(el) => (screen = el)} ></div>
+                </div>
+                <div data-barba className="Test">
+                    <div ref={(el) => (body = el)} className="Head" />
+                    
+                    
+                </div>
+            </React.Fragment>
 
+
+
+            <div className="home" id='smooth-wrapper' style={{background : Background, transition: 'all 1s ease-in-out'}}>
+
+        <div id="smooth-content">
         <img src={logo} alt='nay' className='position-absolute' style={{rotate: '-90deg', right: -200, top : 0}} />
             <div  className="container position-relative">
                 <header id="header" className='d-flex align-items-end'>
@@ -181,9 +230,12 @@ const Home = () => {
             </div>
 
             <Footer />
+        </div>
 
 
-        </motion.div>
+        </div>
+            
+        </>
     );
 };
 

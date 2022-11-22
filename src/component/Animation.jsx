@@ -33,6 +33,58 @@ export let Animation = () => {
                     scrub : 8
                 }
             })
+
+            gsap.fromTo('.title-webworld', {
+                y : 50
+            }, {
+                y: -50,
+                scrollTrigger : {
+                    trigger: '.web-world',
+                    start : 'top top',
+                    end : 'bottom center',
+                    scrub: 8,
+                    
+                }
+            })
+
+            gsap.fromTo('.description-webworld', {
+                y : -100
+            }, {
+                y: 50,
+                scrollTrigger : {
+                    trigger: '.web-world',
+                    start : 'top top',
+                    end : 'bottom center',
+                    scrub: 8,
+                    
+                }
+            })
+
+            gsap.fromTo('.title-ocean', {
+                y : 50
+            }, {
+                y: -20,
+                scrollTrigger : {
+                    trigger: '.ocean-strash',
+                    start : 'top top',
+                    end : 'bottom center',
+                    scrub: 8,
+                    
+                }
+            })
+
+            gsap.fromTo('.description-ocean', {
+                y : 10
+            }, {
+                y: -70,
+                scrollTrigger : {
+                    trigger: '.ocean-strash',
+                    start : 'top top',
+                    end : 'bottom center',
+                    scrub: 8,
+                    
+                }
+            })
         }
     })
 

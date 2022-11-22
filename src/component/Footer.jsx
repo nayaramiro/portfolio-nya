@@ -11,7 +11,7 @@ const Footer = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12 footer-logo">
-                        <Link><img style={{width: '70px' , heght: 'auto'}} src={logo} alt="logo" /></Link>
+                        <Link to="/"><img  style={{width: '70px' , heght: 'auto'}} src={logo} alt="logo" /></Link>
                     </div>
                     <div className="col-12">
                         <div className="d-flex flex-column flex-lg-row">
