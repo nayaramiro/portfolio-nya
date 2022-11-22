@@ -18,6 +18,7 @@ body{
     background-image: url('https://marvinx.com/assets/images/noise.png');
     height: 100vh;
     width: 100vw;
+    animation : Noise .5s steps(10) infinite;
     box-sizing: border-box;
     overflow-x: hidden;
     
@@ -432,7 +433,14 @@ body{
         top: 49%; left: 48%;
     }
 }
-
+@keyframes Noise {
+    0%{
+        background-position: 0 0;
+    }
+    100%{
+        background-position: 100% 100%;
+    }
+}
 
 @media (max-width: 576px) {
     .bio{
