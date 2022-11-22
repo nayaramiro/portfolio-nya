@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Navbar from "./component/Navbar";
-// import Navigation from "./component/Navigation";
+import Navigation from "./component/Navigation";
 import { useRef } from "react";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
   return (
     <div ref={ref} className="App">
         <Navbar/>
-        {/* <Navigation/> */}
+        <Navigation/>
     </div>
   );
 }
